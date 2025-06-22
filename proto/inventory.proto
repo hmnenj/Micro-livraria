@@ -1,0 +1,30 @@
+//Define a versão da sintaxe do Protocol Buffers utilizada
+syntax = "proto3";
+
+//Define um serviço chamado InventoryService
+service InventoryService {
+    //Define um método remoto chamado SearchAllProducts
+    //Esse método recebe uma mensagem do tipo Empty e retorna uma mensagem do tipo ProductsResponde
+  rpc SearchAllProducts(Empty) returns (ProductsList) {}
+}
+
+//Mensagem vazia usada como entrada para o método SearchAllProducts
+//Útil quando o método não precisa de parâmetros de entrada
+message Empty {}
+
+//Define o formato de um único produto na resposta
+message Product {
+    int32 id = 1; //ID do produto (inteiro de 32 bits)
+    string name = 2; //Nome do produto
+    int32 quantity = 3; //Quantidade disponível no estoque
+    float price = 4; //Preço do produto
+    string photo = 5; //URL da imagem do produto
+    string author = 6; //Nome do autor ou fabriacante (util para livros, por exemplo)
+}
+
+//Define a estrutura da resposta do método SearchAllProducts
+//Contém uma lista de produtos (repeated = array/lista)
+message ProductsList {
+    repeated Product products = 1; //Lista de produtos retornados
+}
+

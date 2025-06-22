@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "A Metamorfose",
+        "author": "Franz Kafka",
+        "quantity": 10,
+        "price": 21.22,
+        "photo": "./img/imagemdolivro1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Niétotchka Niezvânova",
+        "author": "Fyodor Dostoevsky",
+        "quantity": 10,
+        "price": 21.22,
+        "photo": "./img/imagemdolivro2.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Noites brancas",
+        "author": "Fyodor Dostoevsky",
+        "quantity": 10,
+        "price": 21.22,
+        "photo": "./img/imagemdolivro3.jpg"
+    }
+]

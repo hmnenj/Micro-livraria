@@ -1,0 +1,21 @@
+//Define a versão da sintaxe do Protocol Buffers usada neste arquivo
+syntax = "proto3";
+
+//Declaração do serviço gRPC chamado "ShippingService"
+service ShippingService {
+    //Define o método remoto "GetShippingRate"
+    //Este método recebe um "ShippingPayload e retorna um "ShippingResponse"
+    rpc GetShippingRate(ShippingPayload) returns (ShippingResponse) {}
+}
+
+//Define a mensagem que será enviada pelo cliente como entrada do método GetShippingRate
+message ShippingPayload {
+    //Campo que representa o CEP (código postal) para o qual será calculado o frete
+    string cep = 1; //Campo 1 do tipo string
+}
+
+//Define a mensagem de resposta que será enviada pelo servidor ao cliente
+message ShippingResponse {
+    //Campo que representa o valor calculado do frete
+    float value = 1; //Campo 1 do tipo float
+}
