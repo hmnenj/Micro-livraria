@@ -5,12 +5,17 @@ syntax = "proto3";
 service InventoryService {
     //Define um método remoto chamado SearchAllProducts
     //Esse método recebe uma mensagem do tipo Empty e retorna uma mensagem do tipo ProductsResponde
-  rpc SearchAllProducts(Empty) returns (ProductsList) {}
+  rpc SearchAllProducts(Empty) returns (ProductsList);
+  rpc SearchProductByID(Payload) returns (Product);
 }
 
 //Mensagem vazia usada como entrada para o método SearchAllProducts
 //Útil quando o método não precisa de parâmetros de entrada
 message Empty {}
+
+message Payload {
+  int32 id = 1;
+}
 
 //Define o formato de um único produto na resposta
 message Product {
@@ -25,6 +30,6 @@ message Product {
 //Define a estrutura da resposta do método SearchAllProducts
 //Contém uma lista de produtos (repeated = array/lista)
 message ProductsList {
-    repeated Product products = 1; //Lista de produtos retornados
+  repeated Product products = 1;
 }
 
