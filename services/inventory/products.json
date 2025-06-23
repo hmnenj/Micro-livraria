@@ -4,23 +4,47 @@
         "name": "A Metamorfose",
         "author": "Franz Kafka",
         "quantity": 10,
-        "price": 21.22,
+        "price": 38.50,
         "photo": "./img/imagemdolivro1.jpg"
     },
     {
         "id": 2,
-        "name": "Niétotchka Niezvânova",
-        "author": "Fyodor Dostoevsky",
+        "name": "A hora da estrela",
+        "author": "Clarice Lispector",
         "quantity": 10,
-        "price": 21.22,
+        "price": 27.15,
         "photo": "./img/imagemdolivro2.jpg"
     },
     {
         "id": 3,
+        "name": "Garota Exemplar",
+        "author": "Gillian Flynn",
+        "quantity": 10,
+        "price": 48.00,
+        "photo": "./img/imagemdolivro3.jpg"
+    },    
+    {
+        "id": 4,
+        "name": "A redoma de vidro",
+        "author": "Sylvia Plath",
+        "quantity": 10,
+        "price": 47.50,
+        "photo": "./img/imagemdolivro4.jpg"
+    },
+    {
+        "id": 5,
         "name": "Noites brancas",
         "author": "Fyodor Dostoevsky",
         "quantity": 10,
-        "price": 21.22,
-        "photo": "./img/imagemdolivro3.jpg"
+        "price": 51.75,
+        "photo": "./img/imagemdolivro5.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Animal",
+        "author": "Lisa Taddeo",
+        "quantity": 10,
+        "price": 43.00,
+        "photo": "./img/imagemdolivro6.jpg"
     }
 ]

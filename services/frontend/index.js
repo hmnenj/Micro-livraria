@@ -8,7 +8,7 @@ function newBook(book) {
     div.innerHTML = `
     <div class="card is-shady">
         <div class="card-image">
-            <figure class="image is-4by3">
+            <figure class="image is-3by2">
                 <img
                      src="${book.photo}"
                      alt="${book.name}" 
@@ -21,7 +21,7 @@ function newBook(book) {
             <div class="content book" data-id="${book.id}"> 
                 <div class="book-meta">
                     <p class="is-size-4">R$${book.price.toFixed(2)}</p>
-                    <p class="is-size-6"> Disponível em estoque: 5</p> 
+                    <p class="is-size-6"> Disponível em estoque: ${book.quantity}</p> 
                     <h4 class="is-size-3 tittle">${book.name}</h4> 
                     <p class="subtitle">${book.author}</p> 
                 </div>
@@ -32,7 +32,7 @@ function newBook(book) {
                     </div>
 
                     <div class="control">
-                        <a class="button button-shipping is-info" data-id="${book.id}"> Calcular Frete </a>
+                        <a class="button button-shipping is-primary" data-id="${book.id}"> Calcular Frete </a>
                     </div>
                 </div>
 
@@ -57,11 +57,23 @@ function calculateShipping(id, cep) {
         })
         .then((data) => {
             //Mostra o valor do frete
-            swal('Frete', `O frete é: R$${data.value.toFixed(2)}`, 'success');
+            Swal.fire({
+                title: 'Frete',
+                text: `O frete é: R$${data.value.toFixed(2)}`,
+                icon: 'success',
+                confirmButtonColor: 'hsl(342, 100%, 90%)',
+                color: 'hsl(342, 100%, 20%)'
+            });
         })
         .catch((err) => {
             //Mostra erro se a requisição falhar
-            swal('Erro', 'Erro as consultar frete', 'error');
+            Swal.fire({
+                title: 'Erro',
+                text: 'Erro ao consultar frete',
+                icon: 'error',
+                confirmButtonColor: 'hsl(342, 100%, 90%)',
+                color: 'hsl(342, 100%, 20%)'
+            });
             console.log(err);
         });
 }
@@ -97,7 +109,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 //Adiciona evento de clique aos botões de compra
                 document.querySelectorAll('.button-buy').forEach((btn) => {
                     btn.addEventListener('click', (e) => {
-                        swal('Compra de livro', 'Sua compra foi realizada com sucesso', 'sucess');
+                        Swal.fire({
+                            title: 'Compra de livro',
+                            text: 'Sua compra foi realizada com sucesso',
+                            icon: 'success',
+                            confirmButtonColor: 'hsl(342, 100%, 90%)',
+                            color: 'hsl(342, 100%, 20%)'
+                        });
                     });
                 });
             }
@@ -105,7 +123,61 @@ document.addEventListener('DOMContentLoaded', function () {
 
         .catch((err) => {
             //Em caso de erro ao carregar os produtos
-            swal('Erro', 'Erro ao listar os produtos', 'error');
+            Swal.fire({
+                title: 'Erro',
+                text: 'Erro ao listar os produtos',
+                icon: 'error',
+                confirmButtonColor: 'hsl(342, 100%, 90%)',
+                color: 'hsl(342, 100%, 20%)'
+            });
             console.log(err);
         });
 });
+
+function searchBook() {
+const id = document.getElementById('bookId').value;
+
+    if (!id) {
+        Swal.fire({
+            title: 'Erro',
+            text: 'Digite um ID válido!',
+            icon: 'warning',
+            confirmButtonColor: 'hsl(342, 100%, 90%)',
+            color: 'hsl(342, 100%, 20%)'
+        });
+        return;
+    }
+
+    fetch(`http://localhost:3000/product/${id}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Livro não encontrado');
+            }
+            return response.json();
+        })
+        .then(book => {
+            Swal.fire({
+                title: 'Livro encontrado',
+                html: `
+                Nome: ${book.name} <br>
+                Autor: ${book.author} <br>
+                Preço: R$${book.price.toFixed(2)} <br>
+                Estoque: ${book.quantity}
+                `,
+                icon: 'success',
+                confirmButtonColor: 'hsl(342, 100%, 90%)',
+                color: 'hsl(342, 100%, 20%)'
+            });
+        })
+        .catch(error => {
+            console.error(error);
+            Swal.fire({
+                title: 'Erro',
+                text: 'Livro não encontrado',
+                icon: 'error',
+                confirmButtonColor: 'hsl(342, 100%, 90%)',
+                color: 'hsl(342, 100%, 20%)'
+            });
+
+        });
+}
